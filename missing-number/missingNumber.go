@@ -25,10 +25,10 @@ func missingNumber(nums []int) int {
 			return i
 		}
 	}
-	return -1
+	return n
 }
 
 func main() {
 	//fmt.Println([]int{1, 1, 1})
-	fmt.Println(missingNumber([]int{0, 1, 2, 3, 4, 6, 7, 8, 9}))
+	fmt.Println(missingNumber([]int{0, 2, 1, 3}))
 }
