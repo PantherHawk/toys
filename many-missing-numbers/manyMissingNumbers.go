@@ -9,8 +9,7 @@ func manyMissingNumbers(nums []int) []int {
 	// cyclic sort
 	for i < n {
 		v := nums[i]
-		if (i != v - 1 && nums[i] != nums[v - 1]) {
-			fmt.Println(v)
+		if (nums[v - 1] != v) {
 			nums[v - 1], nums[i] = nums[i], nums[v - 1]
 		} else {
 			i++
