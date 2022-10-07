@@ -4,19 +4,13 @@ import "fmt"
 
 func dnaSequence(dna, gene string) int {
 	count := 0
-	j := 0
-	i := 0
-	for i < len(dna) {
-		if dna[i]  == gene[j] {
-			if j == len(gene) - 1 {
-				count++
-				j = 0
-			}
-			j++
-			i++
-		} else {
-			j = 0
-			i++
+	geneSequenceLength := len(gene)
+	dnaSequenceLength := len(dna)
+	lenDiff := dnaSequenceLength - geneSequenceLength
+
+	for i := 0; i <= lenDiff; i++ {
+		if dna[i : i + geneSequenceLength] == gene {
+			count++
 		}
 	}
 	return count
