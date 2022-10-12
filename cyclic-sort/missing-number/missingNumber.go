@@ -5,11 +5,6 @@ import "fmt"
 // Given a range from [0, n], return the number missing in the range
 func missingNumber(nums []int) int {
 	n := len(nums)
-	//sum := 0
-	//missingSum := 0
-	//for i := 1; i <= n; i++ {
-	//	sum += i
-	//}
 	i := 0
 	// cycle sort
 	for i < n {

@@ -15,6 +15,7 @@ func manyMissingNumbers(nums []int) []int {
 			i++
 		}
 	}
+	fmt.Println(nums)
 	for i, v := range(nums) {
 		if (i != v - 1) {
 			m = append(m, i + 1)
