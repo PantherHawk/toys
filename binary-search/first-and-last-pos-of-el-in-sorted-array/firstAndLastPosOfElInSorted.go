@@ -8,8 +8,9 @@ func getIndices(nums []int, target int) []int {
 	result := []int{-1, -1}
 	
 	result[0] = search(nums, target, true)
-	result[1] = search(nums, target, false)
-
+	if result[0] != -1 {
+		result[1] = search(nums, target, false)
+	}
 	return result
 }
 
