@@ -56,7 +56,7 @@ func findElementInMountain(nums []int, target int) int {
 		return ans
 	}
 	// order agnostic binary search in the descending slice
-	return orderAgnosticBinarySearch(nums, target, peak, len(nums) - 1)
+	return orderAgnosticBinarySearch(nums, target, peak + 1, len(nums) - 1)
 }
 
 func main() {
