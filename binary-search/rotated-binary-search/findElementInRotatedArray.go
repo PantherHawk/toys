@@ -26,11 +26,43 @@ func findPivot(nums []int) int {
 		}
 		if nums[s] >= nums[mid] {
 			e = mid - 1
-		} else if nums[s] < nums[mid] {
+		} else {
 			s = mid + 1
 		}
 	}
-	return s
+	return -1
+}
+
+
+func findPivotWithDuplicates(nums []int) int {
+	s := 0
+	e := len(nums) - 1
+
+	for s <= e {
+		mid := s + (e - s) / 2
+		if mid < e && nums[mid] > nums[mid + 1] {
+			return mid
+		}
+		if mid > s && nums[mid] < nums[mid - 1] {
+			return mid - 1
+		}
+		// if mid == s == e, ignore s and e
+		if nums[mid] == nums[s] && nums[mid] == nums[e] {
+			if nums[s] > nums[s + 1] {
+				return s
+			}
+			s++
+			if nums[e] < nums[e - 1] {
+				return e - 1
+			}
+			e--
+		} else if nums[s] < nums[mid] || (nums[s] == nums[mid] && nums[mid] > nums[e]) {
+			s = mid + 1
+		} else {
+			e = mid - 1
+		}
+	}
+	return -1
 }
 
 func binarySearch(nums []int, x, s, e int) int {
@@ -49,15 +81,22 @@ func binarySearch(nums []int, x, s, e int) int {
 }
 
 func findTargetInRotatedArray(nums []int, x int) int {
-	p := findPivot(nums)
-
-	ans := binarySearch(nums, x, 0, p)
-	if ans != -1 {
-		return ans
+	p := findPivotWithDuplicates(nums)
+	
+	if p == -1 {
+		// if no pivot, array is not rotated, just do binary search
+		return binarySearch(nums, x, 0, len(nums) - 1)
 	}
-	return binarySearch(nums, x, p + 1, len(nums) - 1)
+	if nums[p] == x {
+		return p
+	}
+	if x > nums[0] {
+		return binarySearch(nums, x, 0, p - 1)
+	} else {
+		return binarySearch(nums, x, p + 1, len(nums) - 1)
+	}
 }
 
 func main() {
-	fmt.Println(findTargetInRotatedArray([]int{4, 5, 6, 7, 0, 1, 2}, 1))
+	fmt.Println(findTargetInRotatedArray([]int{2, 2, 2, 3, 9, 1, 2}, 1))
 }
