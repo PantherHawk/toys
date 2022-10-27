@@ -3,25 +3,23 @@ package main
 import "fmt"
 
 func findPeak(nums []int) int {
-	max := 0
+	//max := 0
 
 	e := len(nums) - 1
 	s := 0
 
-	for s <= e {
-		
+	for s < e {
 		mid := s + (e - s) / 2
 
-		if nums[mid] > max {
-			max = nums[mid]
-			s = mid + 1
+		if nums[mid] > nums[mid + 1] {
+			e = mid
 		} else {
-			e = mid - 1
+			s = mid + 1
 		}
 	}
-	return max
+	return nums[s]
 }
 
 func main() {
-	fmt.Println(findPeak([]int{0, 1, 2,3, 20, 1, 0}))
+	fmt.Println(findPeak([]int{1, 2, 3, 5, 6, 4, 3, 2}))
 }
